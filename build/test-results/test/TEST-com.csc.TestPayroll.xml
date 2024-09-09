@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.csc.TestPayroll" tests="3" skipped="0" failures="0" errors="0" timestamp="2024-09-09T02:02:11" hostname="Dakotas-Laptop.local" time="0.017">
+  <properties/>
+  <testcase name="testPrintPayrollReport()" classname="com.csc.TestPayroll" time="0.013"/>
+  <testcase name="testCalculateInsurance()" classname="com.csc.TestPayroll" time="0.0"/>
+  <testcase name="testCalculateGrossPay()" classname="com.csc.TestPayroll" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
