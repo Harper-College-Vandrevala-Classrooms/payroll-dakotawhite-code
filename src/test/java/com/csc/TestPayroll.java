@@ -1,12 +1,14 @@
 package com.csc;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
+
 public class TestPayroll {
 
     @Test
     public void testCalculateGrossPay() {
-        assertEquals(671.20, Payroll.calculateGrossPay(40), 0.01);
-        assertEquals(797.05, Payroll.calculateGrossPay(45), 0.01);
+        double hourlyRate = 16.78; 
+        assertEquals(671.20, Payroll.calculateGrossPay(40, hourlyRate), 0.01);
+        assertEquals(797.05, Payroll.calculateGrossPay(45, hourlyRate), 0.01);
     }
 
     @Test
@@ -18,8 +20,9 @@ public class TestPayroll {
 
     @Test
     public void testPrintPayrollReport() {
+        double hourlyRate = 16.78;
         double HoursWorked = 45;
-        double GrossPay = Payroll.calculateGrossPay(HoursWorked);
+        double GrossPay = Payroll.calculateGrossPay(HoursWorked, hourlyRate);
         double SSTaxRate = 0.06;
         double FedTaxRate = 0.14;
         double StTaxRate = 0.05;

@@ -3,8 +3,7 @@ import java.util.Scanner;
 
 public class Payroll {
 
-    public static double calculateGrossPay(double HoursWorked) {
-        double HourlyRate = 16.78;
+    public static double calculateGrossPay(double HoursWorked, double HourlyRate) {
         double Overtime = 1.5;
         double RegularHours = 40.0;
 
@@ -30,10 +29,10 @@ public class Payroll {
     }
 
     public static void printPayrollReport(double HoursWorked, double GrossPay, double SSTax, double FedTax,
-                                           double StTax, double UnionDues, double InsuranceCost, double NetPay) {
+                                           double StTax, double UnionDues, double InsuranceCost, double NetPay, double HourlyRate) {
         System.out.println("\nPayroll:\n");
         System.out.printf("   Hours: %6.2f\n", HoursWorked);
-        System.out.printf("    Rate: %6.2f $/hr\n", 16.78);
+        System.out.printf("    Rate: %6.2f $/hr\n", HourlyRate);
         System.out.printf("   Gross: $%7.2f\n", GrossPay);
         System.out.printf("\n  SocSec: $%6.2f\n", SSTax);
         System.out.printf("  FedTax: $%6.2f\n", FedTax);
@@ -47,7 +46,17 @@ public class Payroll {
         Scanner scan = new Scanner(System.in);
 
         System.out.println("Welcome to the Payroll Calculator!");
-
+    // portfolio add-ons customized pay rate and validations
+    double HourlyRate;
+    while (true) {
+        System.out.print("What is your pay rate? ");
+        HourlyRate = scan.nextDouble();
+        if (HourlyRate < 0) {
+            System.out.println("Invalid. The rate you entered was negative. Please re-enter your rate.");
+        } else {
+            break;
+        }
+    }    
         System.out.print("How many hours did you work this week? ");
         double HoursWorked = scan.nextDouble();
         System.out.print("How many dependents do you have? ");
@@ -58,7 +67,7 @@ public class Payroll {
         double StTaxRate = 0.05;
         double UnionDues = 10.00;
 
-        double GrossPay = calculateGrossPay(HoursWorked);
+        double GrossPay = calculateGrossPay(HoursWorked, HourlyRate);
         double SSTax = GrossPay * SSTaxRate;
         double FedTax = GrossPay * FedTaxRate;
         double StTax = GrossPay * StTaxRate;
@@ -66,7 +75,7 @@ public class Payroll {
         double TotalExpenses = SSTax + FedTax + StTax + UnionDues + InsuranceCost;
         double NetPay = GrossPay - TotalExpenses;
 
-        printPayrollReport(HoursWorked, GrossPay, SSTax, FedTax, StTax, UnionDues, InsuranceCost, NetPay);
+        printPayrollReport(HoursWorked, GrossPay, SSTax, FedTax, StTax, UnionDues, InsuranceCost, NetPay, HourlyRate);
         System.out.println("Thank you for using the Payroll Calculator!");
 
         scan.close();
